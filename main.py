@@ -34,6 +34,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.bgnotes = self.findChild(QtWidgets.QPushButton, 'bgnotes')
         self.bgreadme = self.findChild(QtWidgets.QPushButton, 'bgreadme')
         self.copy = self.findChild(QtWidgets.QPushButton, 'copy')
+        self.clear = self.findChild(QtWidgets.QPushButton, 'clear')
+
 
         # text browser
         self.logger = self.findChild(QtWidgets.QTextBrowser, 'logger')
@@ -47,6 +49,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.bgname.clicked.connect(self.naming_task)
         self.copy.clicked.connect(self.copy_to_clipboard)
         self.setWindowTitle("GitAI - *file path")
+        self.clear.clicked.connect(self.clear_text)
 
     def gen_name(self):
         result = generate_name()
@@ -58,6 +61,9 @@ class MainWindow(QtWidgets.QMainWindow):
         clipboard = QtWidgets.QApplication.clipboard()
         clipboard.setText(text)
         QtWidgets.QMessageBox.information(self, "Success", "Copied to clipboard!")
+    
+    def clear_text(self):
+        self.logger.clear()
         
 
     def naming_task(self):
