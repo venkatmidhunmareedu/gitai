@@ -1,0 +1,7 @@
+{
+    "model" : "phi:latest",
+    "prompts" : {
+        "name" : "Make a list of all the some sample project names",
+        "report" : "Generate a sample work report for a project named todo list for a sample company"
+    }
+}

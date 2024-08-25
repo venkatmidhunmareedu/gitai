@@ -6,22 +6,33 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>674</width>
-    <height>332</height>
+    <width>669</width>
+    <height>448</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>9</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>GitAI</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="bgname">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>20</y>
-      <width>161</width>
+      <y>50</y>
+      <width>171</width>
       <height>51</height>
      </rect>
+    </property>
+    <property name="toolTip">
+     <string>Generate a project name for your project </string>
+    </property>
+    <property name="statusTip">
+     <string>Generate a project name for your project using ollama</string>
     </property>
     <property name="text">
      <string>Generate Project Name</string>
@@ -31,36 +42,45 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>90</y>
-      <width>161</width>
+      <y>130</y>
+      <width>171</width>
       <height>51</height>
      </rect>
+    </property>
+    <property name="statusTip">
+     <string>Generate a project report of what have you done today using ollama</string>
     </property>
     <property name="text">
      <string>Generate Report</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="gnotes">
+   <widget class="QPushButton" name="bgnotes">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>160</y>
-      <width>161</width>
+      <y>210</y>
+      <width>171</width>
       <height>51</height>
      </rect>
+    </property>
+    <property name="statusTip">
+     <string>Generate a release notes for your project using ollama</string>
     </property>
     <property name="text">
      <string>Generate release notes</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="gnotes_2">
+   <widget class="QPushButton" name="bgreadme">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>230</y>
-      <width>161</width>
+      <y>290</y>
+      <width>171</width>
       <height>51</height>
      </rect>
+    </property>
+    <property name="statusTip">
+     <string>Generate a Readme.md file for your project using ollama</string>
     </property>
     <property name="text">
      <string>Generate Readme.md</string>
@@ -69,8 +89,8 @@
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>20</y>
+      <x>200</x>
+      <y>90</y>
       <width>441</width>
       <height>261</height>
      </rect>
@@ -78,7 +98,7 @@
     <property name="title">
      <string>Logs</string>
     </property>
-    <widget class="QTextEdit" name="logger">
+    <widget class="QTextBrowser" name="logger">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -87,7 +107,52 @@
        <height>231</height>
       </rect>
      </property>
+     <property name="statusTip">
+      <string>Logger for ollama</string>
+     </property>
     </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_2">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>30</y>
+      <width>441</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Progress</string>
+    </property>
+    <widget class="QProgressBar" name="progressBar">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>421</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="value">
+      <number>24</number>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="copy">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>360</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="statusTip">
+     <string>Copy the text in the logs</string>
+    </property>
+    <property name="text">
+     <string>Copy</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -95,7 +160,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>674</width>
+     <width>669</width>
      <height>26</height>
     </rect>
    </property>
@@ -104,13 +169,15 @@
      <string>File</string>
     </property>
     <addaction name="actionOpen_Repo"/>
-    <addaction name="actionSave_changes"/>
    </widget>
    <widget class="QMenu" name="menuConfig">
     <property name="title">
      <string>Config</string>
     </property>
     <widget class="QMenu" name="menuOllama">
+     <property name="statusTip">
+      <string>Configure the ollama settings</string>
+     </property>
      <property name="title">
       <string>Ollama</string>
      </property>
@@ -124,25 +191,43 @@
     <property name="title">
      <string>Help</string>
     </property>
+    <addaction name="actionVisit_docs"/>
    </widget>
    <widget class="QMenu" name="menuAbout">
     <property name="title">
      <string>About</string>
     </property>
+    <addaction name="actionVisit_About"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuConfig"/>
    <addaction name="menuHelp"/>
    <addaction name="menuAbout"/>
   </widget>
+  <widget class="QStatusBar" name="statusBar"/>
   <action name="actionModel">
    <property name="text">
     <string>Model</string>
    </property>
+   <property name="statusTip">
+    <string>Configure the ollama Model</string>
+   </property>
   </action>
   <action name="actionOpen_Repo">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Open Repo</string>
+   </property>
+   <property name="statusTip">
+    <string>Open a git repository</string>
+   </property>
+   <property name="whatsThis">
+    <string>Open a git repository</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
    </property>
   </action>
   <action name="actionSave_changes">
@@ -154,10 +239,32 @@
    <property name="text">
     <string>ModelFile</string>
    </property>
+   <property name="statusTip">
+    <string>Configure the ollama modelfile</string>
+   </property>
   </action>
   <action name="actionRoute">
    <property name="text">
     <string>Route</string>
+   </property>
+   <property name="statusTip">
+    <string>Configure the ollama route</string>
+   </property>
+  </action>
+  <action name="actionVisit_docs">
+   <property name="text">
+    <string>Visit docs</string>
+   </property>
+   <property name="statusTip">
+    <string>Visit the docs for gitai</string>
+   </property>
+  </action>
+  <action name="actionVisit_About">
+   <property name="text">
+    <string>Visit About</string>
+   </property>
+   <property name="statusTip">
+    <string>Visit the about page of gitai</string>
    </property>
   </action>
  </widget>
